@@ -1,54 +1,131 @@
-﻿using System;
+﻿using Day_04_Advanced_C__G02_Demo.Fifa_Game;
+using static System.Formats.Asn1.AsnWriter;
+using System.Buffers.Text;
+using System.Collections;
+using System.Linq;
+using System.Reflection.PortableExecutable;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
 
-namespace C42_G04_ADV04
+namespace Day_04_Advanced_C__G02_Demo
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            // Create instances
-            Employee employee1 = new Employee { EmployeeID = 1, BirthDate = new DateTime(1980, 1, 1), VacationStock = 10 };
-            Employee employee2 = new Employee { EmployeeID = 2, BirthDate = new DateTime(1960, 1, 1), VacationStock = -5 };
-            SalesPerson salesPerson = new SalesPerson { EmployeeID = 3, BirthDate = new DateTime(1985, 1, 1), VacationStock = 15, AchievedTarget = 80 };
-            BoardMember boardMember = new BoardMember { EmployeeID = 4, BirthDate = new DateTime(1970, 1, 1) };
+            // Delegate : C# Language Feature
+            // Usages:
+            // 1. Functional Programming
+            // 2. Event-Driven Programming
 
-            Department department = new Department { DeptID = 1, DeptName = "IT Department" };
-            Club club = new Club { ClubID = 1, ClubName = "Company Sports Club" };
-
-            // Add employees to department and club
-            department.AddStaff(employee1);
-            department.AddStaff(employee2);
-            department.AddStaff(salesPerson);
-            department.AddStaff(boardMember);
+            // Pure OOP
 
 
-            club.AddMember(employee1);
-            club.AddMember(employee2);
-            club.AddMember(salesPerson);
-            club.AddMember(boardMember);
+            #region Ex-01
+            /*
+            Ball ball = new Ball() { Id = 1 };
 
-            Console.WriteLine("End of Year Operations:\n");
+            Console.WriteLine(ball);
+            ball.Location = new Location() { X = 1, Y = 1, Z = 1 };
 
-            // Perform end of year operations
-            employee1.EndOfYearOperation();
-            employee2.EndOfYearOperation();
-            salesPerson.EndOfYearOperation();
-            boardMember.EndOfYearOperation();
 
-            // Demonstrate SalesPerson failing to meet target
-            salesPerson.CheckTarget(100);
-            salesPerson.EndOfYearOperation();
+            Player P01 = new Player() { PlayerName = "Messi", TeamName = "Miami" };
+            Player P02 = new Player() { PlayerName = "Alba", TeamName = "Miami" };
+            Player P03 = new Player() { PlayerName = "Pedri", TeamName = "Barcelona" };
+            Player P04 = new Player() { PlayerName = "Gavi", TeamName = "Barcelona" };
+            Player P05 = new Player() { PlayerName = "Salah", TeamName = "Barcelona" };
+            Refree R01 = new Refree() { RefreeName = "Ahmed Mohammed" };
 
-            // Demonstrate BoardMember resignation
-            boardMember.Resign();
 
-            Console.WriteLine("\nVacation Requests:\n");
 
-            // Demonstrate vacation requests
-            Console.WriteLine($"Employee1 vacation request: {employee1.RequestVacation(DateTime.Now, DateTime.Now.AddDays(5))}");
-            Console.WriteLine($"Employee2 vacation request: {employee2.RequestVacation(DateTime.Now, DateTime.Now.AddDays(1))}");
 
-            Console.ReadLine();
+            ball.Location = new Location() { X = 1, Y = 1, Z = 1 };
+
+            ball.BallLocationChanged += P01.Run();
+            ball.BallLocationChanged += P02.Run();
+            ball.BallLocationChanged += P03.Run();
+            ball.BallLocationChanged += P04.Run();
+            ball.BallLocationChanged += R01.Look();
+
+            ball.Location = new Location() { X = 1, Y = 1, Z = 1 };
+
+
+            Console.WriteLine("\n After Pedri Changed With Salah \n");
+
+            ball.BallLocationChanged -= P03.Run;
+            ball.BallLocationChanged += P05.Run;
+
+            ball.Location = new Location() { X = 1, Y = 1, Z = 1 };
+            */
+            #endregion
+
+            #region Hashtables Category Overview - Non Generic Collection "Hashtables"
+            //======================== Overview ========================//
+
+            //    Hashtables are a non-generic collection in C# that store key-value pairs. They provide fast lookup, insertion, and deletion of items based on their keys. Hashtables use a hash function to compute the index of a key-value pair in the underlying array, which allows for constant-time access to the data.
+            //    Usage:
+            //Hashtables are useful when you need to quickly access data based on a unique key.They are commonly used in scenarios where you need to perform frequent lookups, such as in caching, database indexing, or when building dictionaries or lookup tables. Hashtables can store any type of object as both the key and the value, and they allow for duplicate values but not duplicate keys.
+
+
+
+            //========================== Ex of using a Hashtable ========================== //
+
+            // Create a new Hashtable
+
+            Hashtable myHashtable = new Hashtable();
+
+            // Add key-value pairs to the Hashtable
+            myHashtable.Add("apple", 1);
+            myHashtable.Add("banana", 2);
+            myHashtable.Add("cherry", 3);
+
+            // Access a value using the key
+            int value = (int)myHashtable["banana"]; // value = 2
+
+            // Check if a key exists
+            if (myHashtable.ContainsKey("orange"))
+            {
+                Console.WriteLine("The key 'orange' exists in the Hashtable.");
+            }
+            else
+            {
+                Console.WriteLine("The key 'orange' does not exist in the Hashtable.");
+            }
+
+            #endregion
+
+            #region Generic Collection " Dictionary"
+            //======================== Overview ========================//
+            //    The Dictionary<TKey, TValue> is a generic collection in C# that stores key-value pairs. Like Hashtables, Dictionaries provide fast lookup, insertion, and deletion of items based on their keys. However, Dictionaries are type-safe, meaning that the key and value types must be specified when creating the collection.
+            //    Usage:
+            // Dictionaries are useful when you need to quickly access data based on a unique key, just like Hashtables. They are commonly used in scenarios where you need to perform frequent lookups, such as in caching, database indexing, or when building dictionaries or lookup tables. Dictionaries can store any type of object as both the key and the value, but the types must be specified when creating the collection.
+
+
+            //========================== Ex of using a Dictionary  ========================== //
+
+            // Create a new Dictionary
+            Dictionary<string, int> myDictionary = new Dictionary<string, int>();
+
+            // Add key-value pairs to the Dictionary
+            myDictionary.Add("apple", 1);
+            myDictionary.Add("banana", 2);
+            myDictionary.Add("cherry", 3);
+
+            // Access a value using the key
+            int value = myDictionary["banana"]; // value = 2
+
+            // Check if a key exists
+            if (myDictionary.ContainsKey("orange"))
+            {
+                Console.WriteLine("The key 'orange' exists in the Dictionary.");
+            }
+            else
+            {
+                Console.WriteLine("The key 'orange' does not exist in the Dictionary.");
+            }
+
+
+            #endregion
         }
     }
 }

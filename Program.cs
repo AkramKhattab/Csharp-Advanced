@@ -6,7 +6,6 @@ namespace C42_G04_ADV04
     {
         static void Main(string[] args)
         {
-            // Create instances
             Employee employee1 = new Employee { EmployeeID = 1, BirthDate = new DateTime(1980, 1, 1), VacationStock = 10 };
             Employee employee2 = new Employee { EmployeeID = 2, BirthDate = new DateTime(1960, 1, 1), VacationStock = -5 };
             SalesPerson salesPerson = new SalesPerson { EmployeeID = 3, BirthDate = new DateTime(1985, 1, 1), VacationStock = 15, AchievedTarget = 80 };
